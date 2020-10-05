@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="livraria" transaction-type="JTA">
+	<persistence-unit name="casadocodigo-dev" transaction-type="JTA">
 
 		<jta-data-source>java:/casadocodigoDS</jta-data-source>
 
