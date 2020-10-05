@@ -20,33 +20,31 @@ import br.com.casadocodigo.loja.models.Livro;
 public class AdminLivrosBean {
 
 	private Livro livro = new Livro();
+	private List<Long> autoresId = new ArrayList<>();
 
 	@Inject
 	private LivroDAO livroDAO;
-	
-	private List<Long> autoresId = new ArrayList<>();
-	
+
 	@Inject
 	private AutorDAO autorDAO;
-	
+
+	@Inject
+	private FacesContext context;
+
 	@Transactional
 	public String salvar() {
-		getAutoresId().forEach(autorId -> {			
+		getAutoresId().forEach(autorId -> {
 			livro.getAutores().add(new Autor(autorId));
 		});
-		
+
 		livroDAO.salvar(livro);
 		System.out.println("Livro cadastrado: " + livro);
-		FacesContext.getCurrentInstance()
-				  	.getExternalContext()
-				  	.getFlash()
-				  	.setKeepMessages(true);
-		FacesContext.getCurrentInstance()
-					.addMessage(null, new FacesMessage("Livro salvo com sucesso!"));
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		context.addMessage(null, new FacesMessage("Livro salvo com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
 	}
-	
-	public List<Autor> getAutores(){
+
+	public List<Autor> getAutores() {
 		return autorDAO.listar();
 	}
 
