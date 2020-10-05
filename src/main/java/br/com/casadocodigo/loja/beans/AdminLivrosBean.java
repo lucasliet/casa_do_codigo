@@ -37,7 +37,12 @@ public class AdminLivrosBean {
 		
 		livroDAO.salvar(livro);
 		System.out.println("Livro cadastrado: " + livro);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Livro salvo com sucesso!"));
+		FacesContext.getCurrentInstance()
+				  	.getExternalContext()
+				  	.getFlash()
+				  	.setKeepMessages(true);
+		FacesContext.getCurrentInstance()
+					.addMessage(null, new FacesMessage("Livro salvo com sucesso!"));
 		return "/livros/lista?faces-redirect=true";
 	}
 	
