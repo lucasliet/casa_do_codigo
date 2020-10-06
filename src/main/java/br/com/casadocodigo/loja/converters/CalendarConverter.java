@@ -11,32 +11,40 @@ import javax.faces.convert.DateTimeConverter;
 import javax.faces.convert.FacesConverter;
 
 @FacesConverter(forClass=Calendar.class)
-public class CalendarConverter implements Converter{
-	
-	private DateTimeConverter converter;
+public class CalendarConverter implements Converter {
 
-	
+	private DateTimeConverter converter = new DateTimeConverter();
 	
 	public CalendarConverter() {
-		converter = new DateTimeConverter();
 		converter.setPattern("dd/MM/yyyy");
 		converter.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 	}
-
+	
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String dateAsString) {
-		Date date = (Date) converter.getAsObject(context, component, dateAsString);
+	public Object getAsObject(FacesContext context, 
+			UIComponent component, String dataTexto) {
+		Date data = (Date) converter.getAsObject(context, component, dataTexto);
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
+		calendar.setTime(data);
 		return calendar;
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object dateAsObject) {
-		if (dateAsObject == null) return null;
-		Calendar calendar = (Calendar) dateAsObject;
-		String dateAsString = converter.getAsString(context, component, calendar.getTime());
-		return dateAsString;
+	public String getAsString(FacesContext context, 
+			UIComponent component, Object dataObject) {
+		if (dataObject == null) 
+			return null;
+		
+		Calendar calendar = (Calendar) dataObject;
+		return converter.getAsString(
+				context, component, calendar.getTime());
 	}
 
 }
+
+
+
+
+
+
+
