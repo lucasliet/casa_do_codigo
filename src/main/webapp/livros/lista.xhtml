@@ -10,20 +10,26 @@
 <h:dataTable var="livro" value="#{adminListaLivrosBean.livros}">
 	<h:column>
 		<f:facet name="header">Título</f:facet>
-			#{livro.titulo}
-		</h:column>
+		#{livro.titulo}
+	</h:column>
 	<h:column>
 		<f:facet name="header">Descrição</f:facet>
-			#{livro.descricao}
-		</h:column>
+		#{livro.descricao}
+	</h:column>
 	<h:column>
 		<f:facet name="header">Número de Páginas</f:facet>
-			#{livro.numeroPaginas}
-		</h:column>
+		#{livro.numeroPaginas}
+	</h:column>
 	<h:column>
 		<f:facet name="header">Preço</f:facet>
-			#{livro.preco}
-		</h:column>
+		#{livro.preco}
+	</h:column>
+	<!-- 
+	<h:column>
+		<f:facet name="header">Data de Publicaçao</f:facet>
+		#{livro.dataPublicacao}
+	</h:column> 
+	-->
 	<h:column>
 		<f:facet name="header">Autores</f:facet>
 		<ui:repeat value="#{livro.autores}" var="autor">
