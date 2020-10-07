@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Pagamento {
 
 	private BigDecimal value;
-	
+
 	public Pagamento(BigDecimal value) {
 		this.value = value;
 	}
@@ -17,5 +17,4 @@ public class Pagamento {
 	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
-	
 }

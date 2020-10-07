@@ -23,28 +23,31 @@ import br.com.casadocodigo.loja.models.Compra;
 public class PagamentoService {
 
 	@Context
-	private ServletContext context;
-	
+	ServletContext context;
+
 	@Inject
 	private CompraDao compraDao;
+
 	@Inject
 	private PagamentoGateway pagamentoGateway;
-	
+
 	private static ExecutorService executor = Executors.newFixedThreadPool(50);
-	
+
 	@POST
 	public void pagar(@Suspended final AsyncResponse ar, @QueryParam("uuid") String uuid) {
 		Compra compra = compraDao.buscaPorUuid(uuid);
+
+		String contextPath = context.getContextPath();
 		
 		executor.submit(() -> {
 			try {
 				String resposta = pagamentoGateway.pagar(compra.getTotal());
 				System.out.println(resposta);
-				
-				URI responseUri = UriBuilder.fromPath("http://localhost:8080" + 
-						context.getContextPath() + "/index.xhtml")
-						.queryParam("msg", "Compra Realizada com Sucesso")
-						.build();
+
+				URI responseUri = UriBuilder
+						.fromPath("http://localhost:8080" + contextPath + "/index.xhtml")
+						.queryParam("msg", "Compra realizada com sucesso").build();
+
 				Response response = Response.seeOther(responseUri).build();
 				ar.resume(response);
 			} catch (Exception e) {
@@ -52,13 +55,4 @@ public class PagamentoService {
 			}
 		});
 	}
-	
 }
-
-
-
-
-
-
-
-

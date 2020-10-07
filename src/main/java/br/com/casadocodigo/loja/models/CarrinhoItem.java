@@ -4,23 +4,28 @@ public class CarrinhoItem {
 
 	private Livro livro;
 	private Integer quantidade;
-	
+
 	public CarrinhoItem(Livro livro) {
 		this.livro = livro;
 		this.quantidade = 1;
 	}
+		
 	public Livro getLivro() {
 		return livro;
 	}
+
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}
+
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -28,6 +33,7 @@ public class CarrinhoItem {
 		result = prime * result + ((livro == null) ? 0 : livro.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -44,5 +50,4 @@ public class CarrinhoItem {
 			return false;
 		return true;
 	}
-	
 }

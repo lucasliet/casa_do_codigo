@@ -20,7 +20,7 @@ public class LivroDao {
 	public void salvar(Livro livro) {
 		manager.persist(livro);
 	}
-	
+
 	public List<Livro> listar() {
 		String jpql = "select distinct(l) from Livro l "
 				+ " join fetch l.autores";
@@ -33,7 +33,6 @@ public class LivroDao {
 		return manager.createQuery(jpql, Livro.class)
 				.setMaxResults(5)
 				.setHint(QueryHints.HINT_CACHEABLE, true)
-				.setHint(QueryHints.HINT_CACHE_REGION, "home")
 				.getResultList();
 	}
 
@@ -42,7 +41,6 @@ public class LivroDao {
 		return manager.createQuery(jpql, Livro.class)
 				.setFirstResult(5)
 				.setHint(QueryHints.HINT_CACHEABLE, true)
-				.setHint(QueryHints.HINT_CACHE_REGION, "home")
 				.getResultList();
 	}
 

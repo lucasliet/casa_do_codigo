@@ -106,7 +106,6 @@ public class Livro {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -130,7 +129,6 @@ public class Livro {
 			return false;
 		return true;
 	}
-	
 }
 
 
